@@ -1,0 +1,27 @@
+:root
+{
+    align-items: center;
+    color-scheme: dark;
+    font-family: "consolas";
+}
+.stylelogin
+{
+    font-size: 150%;
+}
+.container
+{
+    width: 150px;
+    clear: both;
+}
+.container input
+{
+    width: 100%;
+    clear: both;
+}
+div.fixed {
+    position: fixed;
+    top: auto;
+    right: 10px;
+    width: auto;
+    border: 0px solid #ffffff;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in / Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    {% if uname %}
+    <a>
+        Hello, {{uname}}!
+        Nice to see you back. 
+        Current time is: {{time}}
+    </a>
+    <div class="container">
+        <form action="/" method="post" enctype=multipart/form-data>
+        {{ form.csrf_token }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=50) }}
+            </p>
+            <p>
+                {{ form.userpassword.label }}<br>
+                {{ form.userpassword }}
+            </p>
+            <p>
+                <button type="submit" value="Send">
+                    Continue
+                </button>
+            </p>
+        </form>
+    </div>
+    <div>
+        <p>
+            <form action="/" method="post" enctype=multipart/form>
+                {{ form.csrf_token }}
+                <button type="submit" name="delete" value="Del">
+                    Enter this button to delete cookies.
+                </button>
+            </form>
+        </p>
+    </div>
+    {% else %}
+    <div>
+        <p>
+            Hello, anon!
+            You need to register to gain accsess to the site.
+        </p>
+    </div>
+    <div class="container">
+        <form action="/" method="post">
+            {{ form.csrf_token }}
+            <p>
+                {{ form.firstname.label }}<br>
+                {{ form.firstname(size=50) }}
+                    
+            </p>
+            <p>
+                {{ form.secondname.label }}<br>
+                {{ form.secondname(size=50) }}
+            </p>
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=50) }}
+            </p>
+            <p>
+                {{ form.usermail.label }}<br>
+                {{ form.usermail(size=50) }}
+            </p>
+            <p>
+                {{ form.userpassword.label }}<br>
+                {{ form.userpassword }}
+            </p>
+            <button type="submit" value="Send">
+                Confirm
+            </button>
+        </form>
+    </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+</body>
